@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Arman92/go-tdlib"
+	"github.com/fzerorubigd/go-tdlib"
 )
 
 const botToken = "<your bot token>"
