@@ -3,7 +3,7 @@ package tdlib
 //#cgo linux CFLAGS: -I/usr/local/include
 //#cgo darwin CFLAGS: -I/usr/local/include
 //#cgo windows CFLAGS: -IC:/src/td -IC:/src/td/build
-//#cgo linux LDFLAGS: -L/usr/local/lib -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdapi -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lc++ -lssl -lcrypto -ldl -lz -lm
+//#cgo linux LDFLAGS: -L/usr/local/lib -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdapi -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lc++ -lstdc++ -lssl -lcrypto -ldl -lz -lm
 //#cgo darwin LDFLAGS: -L/usr/local/lib -L/usr/local/opt/openssl/lib -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdapi -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lc++ -lssl -lcrypto -ldl -lz -lm
 //#cgo windows LDFLAGS: -LC:/src/td/build/Debug -ltdjson
 //#include <stdlib.h>
@@ -379,4 +379,9 @@ func (client *Client) SendAuthPassword(password string) (AuthorizationState, err
 
 	authState, err := client.GetAuthorizationState()
 	return authState, err
+}
+
+// UnmarshalUpdate return the update
+func UnmarshalUpdate(rawMsg json.RawMessage) (Update, error) {
+	return unmarshalUpdate(&rawMsg)
 }
